@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik Bubbles", cursive;
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.square {
+  height: 60px;
+  width: 60px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+}
+
+// tablet and pc
+@media screen and (max-width: 1920px) {
+  .container {
+    display: grid;
+    grid-template-columns: 320px 200px;
+    justify-content: center;
+    margin-top: 100px;
+    position: relative;
+
+    .game-board {
+      min-height: 320px;
+      border: 1px solid transparent;
+      box-shadow: 1px 1px 20px 10px #888888;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+    }
+
+    .side-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 20px;
+
+      .info {
+        text-align: center;
+      }
+
+      .group-btn {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        button {
+          height: 40px;
+          width: 40px;
+          border: none;
+          border-radius: 5px;
+          background-color: cyan;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          ion-icon {
+            font-size: 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+//mobile
+@media screen and (max-width: 525px) {
+  .container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .game-board {
+      width: 80%;
+      margin-top: 30px;
+    }
+
+    .side-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0px;
+      gap: 15px;
+
+      .info {
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
