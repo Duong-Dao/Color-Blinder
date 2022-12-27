@@ -10,7 +10,7 @@ function App() {
   const [diffIndex, setDiffIndex] = useState([]);
   const [diffColor, setDiffColor] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMute, setIsMute] = useState(false);
+  const [isMute, setIsMute] = useState(true);
 
   const auRef = useRef();
 
@@ -19,7 +19,7 @@ function App() {
   };
 
   const handleMute = () => {
-    isMute ? auRef.current.pause() : auRef.current.play();
+    !isMute ? auRef.current.pause() : auRef.current.play();
     setIsMute(!isMute);
   };
 
@@ -48,33 +48,29 @@ function App() {
     setDiffColor(`rgb(${newRGB.r}, ${newRGB.g}, ${newRGB.b})`);
   };
 
-  useEffect(() => {
+  const start = () => {
     newRound();
-    // auRef.current
-    //   .play()
-    //   .then((result) => {})
-    //   .catch((err) => {});
+    setTimeLeft(15);
+    setIsPlaying(false);
+    setIsMute(true);
+    setPoint(0);
+  };
+
+  useEffect(() => {
+    start();
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    // let interval;
-    // if (isPlaying) {
-    //   if (timeLeft > 0) {
-    //     interval = setInterval(() => {
-    //       setTimeLeft((prev) => prev - 1);
-    //     }, 1000);
-    //   } else {
-    //     // alert("GAME OVER!");
-    //     clearInterval(interval);
-    //   }
-    // }
     const interval = setInterval(() => {
       if (isPlaying) {
-        if (timeLeft > 0) {
-          setTimeLeft((prev) => prev - 1);
+        if (timeLeft === 0) {
+          auRef.current.pause();
+          alert("GAME OVER!");
+          start();
+          return;
         } else {
-          clearInterval(interval);
+          setTimeLeft((prev) => prev - 1);
         }
       }
     }, 1000);
@@ -82,7 +78,7 @@ function App() {
       clearInterval(interval);
     };
     // eslint-disable-next-line
-  }, [isPlaying]);
+  }, [isPlaying, timeLeft]);
 
   return (
     <div className="container">
@@ -146,7 +142,7 @@ function App() {
             )}
           </button>
           <button onClick={() => handleMute()}>
-            {isMute ? (
+            {!isMute ? (
               <ion-icon name="volume-high"></ion-icon>
             ) : (
               <ion-icon name="volume-mute"></ion-icon>
