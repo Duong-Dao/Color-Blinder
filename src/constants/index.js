@@ -6,9 +6,9 @@ const generateRGB = () => {
 };
 
 const mutateRGB = ({ r, g, b }) => {
-  const newR = r + Math.floor(Math.random() * 20) + 20;
-  const newG = g + Math.floor(Math.random() * 20) + 20;
-  const newB = b + Math.floor(Math.random() * 20) + 20;
+  const newR = r + Math.floor(Math.random() * 20) + 5;
+  const newG = g + Math.floor(Math.random() * 20) + 5;
+  const newB = b + Math.floor(Math.random() * 20) + 5;
   return { r: newR, g: newG, b: newB };
 };
 

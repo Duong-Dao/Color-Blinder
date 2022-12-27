@@ -54,6 +54,7 @@ function App() {
     //   .play()
     //   .then((result) => {})
     //   .catch((err) => {});
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -80,6 +81,7 @@ function App() {
     return () => {
       clearInterval(interval);
     };
+    // eslint-disable-next-line
   }, [isPlaying]);
 
   return (
@@ -123,7 +125,8 @@ function App() {
             <span style={{ color: "#E57E31" }}>O</span>
             <span style={{ color: "#F1C431" }}>L</span>
             <span style={{ color: "#68CC73" }}>O</span>
-            <span style={{ color: "#3998DB" }}>R</span> BLINDER
+            <span style={{ color: "#3998DB" }}>R</span>
+            <span style={{ color: "#555555" }}> BLINDER</span>
           </h1>
         </div>
         <div className="info">

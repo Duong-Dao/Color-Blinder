@@ -26,13 +26,13 @@
 @media screen and (max-width: 1920px) {
   .container {
     display: grid;
-    grid-template-columns: 320px 200px;
+    grid-template-columns: 340px 200px;
     justify-content: center;
-    margin-top: 100px;
     position: relative;
 
     .game-board {
-      min-height: 320px;
+      min-height: 340px;
+      min-width: 340px;
       border: 1px solid transparent;
       box-shadow: 1px 1px 20px 10px #888888;
       border-radius: 10px;
@@ -40,6 +40,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: row;
+      background-color: #fff;
     }
 
     .side-bar {
@@ -61,10 +62,11 @@
           width: 40px;
           border: none;
           border-radius: 5px;
-          background-color: cyan;
+          background-color: #99cc33;
           display: flex;
           justify-content: center;
           align-items: center;
+          cursor: pointer;
 
           ion-icon {
             font-size: 35px;
