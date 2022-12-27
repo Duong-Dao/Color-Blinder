@@ -26,10 +26,10 @@ function App() {
   const onComplited = (row, col) => {
     if (row === diffIndex[0] && col === diffIndex[1]) {
       setPoint((prev) => prev + 1);
-      setTimeLeft((prev) => prev + 2);
+      setTimeLeft((prev) => prev + 1);
       newRound();
     } else {
-      setTimeLeft((prev) => prev - 2);
+      setTimeLeft((prev) => prev - 3);
     }
   };
 
