@@ -11,7 +11,7 @@ function App() {
   const [diffColor, setDiffColor] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMute, setIsMute] = useState(true);
-
+  console.log("diffIndex", diffIndex);
   const auRef = useRef();
 
   const handlePlay = () => {
@@ -26,15 +26,14 @@ function App() {
   const onComplited = (row, col) => {
     if (row === diffIndex[0] && col === diffIndex[1]) {
       setPoint((prev) => prev + 1);
-      setTimeLeft((prev) => prev + 1);
+      setTimeLeft(15);
       newRound();
     } else {
-      setTimeLeft((prev) => prev - 3);
     }
   };
 
-  const generateDiffIndex = () => {
-    return Math.floor(Math.random() * sizeBoard);
+  const generateDiffIndex = (size) => {
+    return Math.floor(Math.random() * size);
   };
 
   const newRound = () => {
@@ -44,16 +43,24 @@ function App() {
 
     setRGB(rgb);
     setSizeBoard(size);
-    setDiffIndex([generateDiffIndex(), generateDiffIndex()]);
+    setDiffIndex([generateDiffIndex(size), generateDiffIndex(size)]);
     setDiffColor(`rgb(${newRGB.r}, ${newRGB.g}, ${newRGB.b})`);
   };
 
+  const reset = () => {
+    Promise.resolve().then(() => {
+      setSizeBoard(2);
+      setDiffIndex([generateDiffIndex(2), generateDiffIndex(2)]);
+      setPoint(0);
+      setTimeLeft(15);
+      setIsPlaying(false);
+      setIsMute(true);
+    });
+  };
+
   const start = () => {
+    reset();
     newRound();
-    setTimeLeft(15);
-    setIsPlaying(false);
-    setIsMute(true);
-    setPoint(0);
   };
 
   useEffect(() => {
@@ -67,8 +74,7 @@ function App() {
         if (timeLeft === 0) {
           auRef.current.pause();
           alert("GAME OVER!");
-          start();
-          return;
+          return start();
         } else {
           setTimeLeft((prev) => prev - 1);
         }
