@@ -4,7 +4,7 @@
   "description": "Let's play the game.",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "favicon.ico",
       "sizes": "16x16",
       "type": "image/x-icon"
     }
