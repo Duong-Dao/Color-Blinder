@@ -11,7 +11,7 @@ function App() {
   const [diffColor, setDiffColor] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMute, setIsMute] = useState(true);
-  console.log("diffIndex", diffIndex);
+
   const auRef = useRef();
 
   const handlePlay = () => {
