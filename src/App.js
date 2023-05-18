@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { convertTime, generateRGB, mutateRGB } from "./constants";
 
 function App() {
+  const level = ["easy", "medium", "hard"]; // 20, 10, 5
   const [point, setPoint] = useState(0);
   const [sizeBoard, setSizeBoard] = useState(2);
   const [timeLeft, setTimeLeft] = useState(15);
@@ -11,6 +12,9 @@ function App() {
   const [diffColor, setDiffColor] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMute, setIsMute] = useState(true);
+  const [levelSelected, setLevelSelected] = useState(level[0]);
+  //level of diff lod
+  const [lod, setLod] = useState(20);
 
   const auRef = useRef();
 
@@ -21,6 +25,11 @@ function App() {
   const handleMute = () => {
     !isMute ? auRef.current.pause() : auRef.current.play();
     setIsMute(!isMute);
+  };
+
+  const handleSelectLevel = (lv, lod) => {
+    setLevelSelected(lv);
+    setLod(lod);
   };
 
   const onComplited = (row, col) => {
@@ -38,7 +47,7 @@ function App() {
 
   const newRound = () => {
     const rgb = generateRGB();
-    const newRGB = mutateRGB(rgb);
+    const newRGB = mutateRGB(rgb, lod);
     const size = Math.min(Math.max(Math.round(Math.sqrt(point)), 2), 5);
 
     setRGB(rgb);
@@ -138,6 +147,29 @@ function App() {
           <p className="time">
             Time: <span>{convertTime(timeLeft)}</span>
           </p>
+        </div>
+        <div className="level">
+          <button
+            className={`level-btn ${levelSelected === "easy" ? `active` : ``} ${
+              isPlaying ? `disable` : ``
+            }`}
+            onClick={() => handleSelectLevel(level[0], 20)}>
+            E
+          </button>
+          <button
+            className={`level-btn ${
+              levelSelected === "medium" ? `active` : ``
+            } ${isPlaying ? `disable` : ``}`}
+            onClick={() => handleSelectLevel(level[1], 10)}>
+            M
+          </button>
+          <button
+            className={`level-btn ${levelSelected === "hard" ? `active` : ``} ${
+              isPlaying ? `disable` : ``
+            }`}
+            onClick={() => handleSelectLevel(level[2], 5)}>
+            H
+          </button>
         </div>
         <div className="group-btn">
           <button onClick={() => handlePlay()}>

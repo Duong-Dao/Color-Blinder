@@ -57,6 +57,25 @@
         text-align: center;
       }
 
+      .level {
+        display: flex;
+        justify-content: space-around;
+
+        .level-btn {
+          padding: 10px 15px;
+          border-radius: 5px;
+          background-color: #68cc73;
+          color: #555555;
+          cursor: auto;
+          border: none;
+        }
+
+        .active {
+          background-color: #99cc33;
+          color: #fff;
+        }
+      }
+
       .group-btn {
         display: flex;
         justify-content: space-evenly;
@@ -64,9 +83,10 @@
         button {
           height: 40px;
           width: 40px;
+          padding: 10px;
           border: none;
           border-radius: 5px;
-          background-color: #99cc33;
+          background-color: #68cc73;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -99,10 +119,19 @@
       justify-content: space-between;
       margin: 0px;
       gap: 15px;
+      align-items: center;
 
       .info {
         display: flex;
-        justify-content: space-evenly;
+        gap: 20px;
+      }
+
+      .level {
+        width: 65%;
+      }
+
+      .group-btn {
+        gap: 20px;
       }
     }
   }
